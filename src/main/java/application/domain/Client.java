@@ -1,6 +1,8 @@
 package application.domain;
 
 public class Client {
+    public static final int MAX_USER_INTENTS = 3;
+
     protected int id;
     protected String identification;
     protected String fullName;
@@ -8,6 +10,7 @@ public class Client {
     protected String userName;
     protected String password;
     protected int failedIntents;
+    protected boolean isAuthenticated;
     protected boolean isBlocked;
 
     public Client(int id, String identification, String fullName, String cellPhone, String userName, String password, int failedIntents, boolean isBlocked) {
@@ -18,6 +21,7 @@ public class Client {
         this.userName = userName;
         this.password = password;
         this.failedIntents = failedIntents;
+        this.isAuthenticated = false;  //Client starts not authenticated
         this.isBlocked = isBlocked;
     }
 
@@ -69,6 +73,14 @@ public class Client {
         this.password = password;
     }
 
+    public boolean isAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        isAuthenticated = authenticated;
+    }
+
     public int getFailedIntents() {
         return failedIntents;
     }
@@ -94,7 +106,9 @@ public class Client {
                 ", cellPhone=" + cellPhone +
                 ", userName=" + userName +
                 ", failedIntents=" + failedIntents +
+                ", isAuthenticated=" + isAuthenticated +
                 ", isBlocked=" + isBlocked +
                 "}";
     }
+
 }
